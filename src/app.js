@@ -1,12 +1,11 @@
 import express, { json } from "express";
 import cors from "cors";
-//import connection from "./database/conectionDataBase.js";
-
+import routerGames from "./routes/gamesRoutes.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-//app.use(connection);
+app.use(routerGames)
 
 
 
