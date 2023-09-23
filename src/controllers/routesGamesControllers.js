@@ -20,8 +20,14 @@ export async function postGames(req, res) {
     const {name, image, stockTotal, pricePerDay} = req.body;
 
     try{
-        const existGame = await db.query(`SELECT * FROM games WHERE name LIKE ${'name'};`)
-        if (existGame) return (res.status(409).send("Este jogo já existe em nosso sistema!"))
+        const existGame = await db.query(
+            `SELECT * FROM games WHERE name = $1;`,
+            [name]
+        );
+
+        if (existGame.rows[0]) {
+            return (res.sendStatus(409))
+        }
        
         const game = await db.query(`INSERT INTO games (name, image, "stockTotal", "pricePerDay") VALUES ($1, $2, $3, $4);`, [name, image, stockTotal, pricePerDay])
 
