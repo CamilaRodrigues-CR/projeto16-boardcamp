@@ -68,12 +68,20 @@ export async function postCustomers(req, res) {
 
 export async function updateCustomers(req, res) {
     const {id} = req.params;
-    const {name, phone, cpf, birthday} = req.body;
+    const {name, phone, birthday} = req.body;
 
     try {
+        const rightCpf = await db.query(
+            `SELECT * FROM customers WHERE id = $1;`,
+            [id]
+        );
+        console.log(rightCpf.rows[0].cpf)
+
+        if (rightCpf.rows[0].id != id) return (res.sendStatus(409))
+
         const cliente = await db.query(
-            `UPDATE customers SET name = $1, phone = $2, cpf = $3, birthday = $4 WHERE id = $5`,
-            [name, phone, cpf, birthday, id]
+            `UPDATE customers SET name = $1, phone = $2, birthday = $3 WHERE id = $4`,
+            [name, phone, birthday, id]
         )
 
         res.status(200).send(cliente.rows[0]);

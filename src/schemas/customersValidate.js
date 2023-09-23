@@ -6,6 +6,11 @@ export const validateCustomers = Joi.object({
     cpf: Joi.string().required().min(11).max(11),
     birthday: Joi.date().required()
 })
+export const validateUpdateCustomers = Joi.object({
+    name: Joi.string().required(),
+    phone: Joi.string().required().min(10).max(11),
+    birthday: Joi.date().required()
+})
 
 /*
 cpf deve ser uma string com 11 caracteres numéricos; 
