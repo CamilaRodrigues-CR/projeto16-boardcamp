@@ -10,5 +10,4 @@ routerCustomers.get('/customers/:id', getIdCustomers)
 routerCustomers.post('/customers', validateSchema(validateCustomers), postCustomers);
 routerCustomers.put('/customers/:id',validateSchema(validateCustomers), updateCustomers)
 
-
 export default routerCustomers;
