@@ -2,7 +2,7 @@ import Joi from "joi";
 
 export const validateCustomers = Joi.object({
     name: Joi.string().required(),
-    phone: Joi.string().pattern(/^\d{2}(\d{8}|\d{7})$/).required(),
+    phone: Joi.string().pattern(/^\d{10}|\d{11})$/).required(),
     cpf: Joi.string().pattern(/^\d{3}\d{3}\d{3}\d{2}$/).required(),
     birthday: Joi.string().pattern(/^\d{4}\-\d{2}\-\d{2}$/).required(),
 })
