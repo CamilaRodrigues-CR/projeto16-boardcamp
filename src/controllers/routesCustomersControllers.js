@@ -40,7 +40,7 @@ export async function getIdCustomers(req, res) {
 
 
 
-        res.status(200).send(clienteFormatado);
+        res.status(200).send(clienteFormatado[0]);
 
     } catch (err) {
         res.status(500).send(err.message)
