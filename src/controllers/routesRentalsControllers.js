@@ -6,7 +6,9 @@ import { db } from "../database/conectionDataBase.js";
 export async function getRentals(req, res){
     
     try{
-        const rental = await db.query( "SELECT rentals, customer_game FROM rentals JOIN customer_game ON 'rentals.customerId'= customer_game.customer_id;")
+        const rental = await db.query( "SELECT rentals * FROM rentals;");
+        const customer = await db.query( "SELECT customers * FROM rentals;")
+        const game = await db.query( "SELECT games * FROM rentals;")
         
         res.status(200).send(rental);
 
